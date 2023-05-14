@@ -1,5 +1,7 @@
 package com.rezoo.alertdialogs
 
+import android.content.Context
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.os.IResultReceiver._Parcel
@@ -25,6 +27,22 @@ class MainActivity : AppCompatActivity() {
             }.create()
         binding.button.setOnClickListener {
             addContactdialog.show()
+        }
+
+        val option= arrayOf("Red","Blue","Green")
+        val singleChoiceDialog = AlertDialog.Builder(this)
+            .setTitle("Choose one og these items")
+            .setSingleChoiceItems(option,0){ _, i ->
+                Toast.makeText(this,"you select ${option[i]}",Toast.LENGTH_SHORT).show()
+            }
+            .setPositiveButton("Accept"){ _ , _ ->
+                Toast.makeText(this,"You  Accepted",Toast.LENGTH_LONG).show()
+            }
+            .setNegativeButton("Decline"){ _,_ ->
+                Toast.makeText(this,"You  Cancelled",Toast.LENGTH_LONG).show()
+            }.create()
+        binding.button2.setOnClickListener {
+            singleChoiceDialog.show()
         }
 
 
