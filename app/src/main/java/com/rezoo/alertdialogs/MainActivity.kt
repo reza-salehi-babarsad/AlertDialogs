@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         binding=ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        //First Dialog
         val addContactdialog = AlertDialog.Builder(this)
             .setTitle("Add Contact")
             .setMessage("Would You Like Add This To Contacts?")
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         binding.button.setOnClickListener {
             addContactdialog.show()
         }
-
+        //Second Dialog
         val option= arrayOf("Red","Blue","Green")
         val singleChoiceDialog = AlertDialog.Builder(this)
             .setTitle("Choose one og these items")
@@ -44,6 +45,26 @@ class MainActivity : AppCompatActivity() {
         binding.button2.setOnClickListener {
             singleChoiceDialog.show()
         }
+        // Third Dialog
+        val multiChoiceDialog = AlertDialog.Builder(this)
+            .setTitle("Choose one og these items")
+            .setMultiChoiceItems(option, booleanArrayOf(false,false,false)){ _,i,isChecked ->
+                if (isChecked){
+                    Toast.makeText(this,"you Checked ${option[i]}",Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this,"you UnChecked ${option[i]}",Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setPositiveButton("Accept"){ _ , _ ->
+                Toast.makeText(this,"You  Accepted the MultiChoiceDialog",Toast.LENGTH_LONG).show()
+            }
+            .setNegativeButton("Decline"){ _,_ ->
+                Toast.makeText(this,"You  Cancelled the MultiChoiceDialog",Toast.LENGTH_LONG).show()
+            }.create()
+        binding.button3.setOnClickListener {
+            multiChoiceDialog.show()
+        }
+
 
 
     }
